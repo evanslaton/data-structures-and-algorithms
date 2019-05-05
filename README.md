@@ -1,2 +1,2 @@
 # Data Structures and Algorithms
-* [reverse_array](src/main/java/ArrayReverse.java)
+* [reverse_array](src/main/java/arrays/ArrayReverse.java)
