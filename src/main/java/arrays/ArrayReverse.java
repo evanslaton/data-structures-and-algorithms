@@ -5,18 +5,18 @@ package arrays;
  * return an array with elements in reversed order.                          */
 
 public class ArrayReverse {
-    public Object[] reverseArray(Object[] input) {
-        int middle = input.length / 2;
+    public Object[] reverseArray(Object[] arr) {
+        int middle = arr.length / 2;
         Object temp;
 
-        if (input.length <= 1) return input;
+        if (arr.length <= 1) return arr;
 
         for (int i = 0; i < middle; i++) {
-            temp = input[i];
-            input[i] = input[input.length - i - 1];
-            input[input.length - i -1] = temp;
+            temp = arr[i];
+            arr[i] = arr[arr.length - i - 1];
+            arr[arr.length - i -1] = temp;
         }
 
-        return input;
+        return arr;
     }
 }
