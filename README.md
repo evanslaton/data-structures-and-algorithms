@@ -1,4 +1,4 @@
 # Data Structures and Algorithms
 * Arrays
   * [reverse_array](src/main/java/arrays/ArrayReverse.java)
-  * [reverse_array](src/main/java/arrays/ArrayShift.java)
+  * [array_shift](src/main/java/arrays/ArrayShift.java)
