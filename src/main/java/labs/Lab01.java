@@ -1,5 +1,8 @@
 package labs;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Lab01 {
     public static void main(String[] args) {
         int dogCount = 1;
@@ -11,7 +14,9 @@ public class Lab01 {
         int turtleCount = 0;
         System.out.println("I own " + turtleCount + " " + pluralize("turtle", turtleCount) + ".");
 
-        flipNHeads(1);
+        flipNHeads(5);
+
+        clock();
     }
 
     // Write a function called pluralize that accepts a word and a
@@ -29,8 +34,7 @@ public class Lab01 {
     // for each flip. Print It took FLIPS flips to flip N heads in a
     // row. once n heads have been in a row.
     public static void flipNHeads(int n) {
-        int totalCoinFlips = 0;
-        int consecutiveHeads = 0;
+        int totalCoinFlips = 0, consecutiveHeads = 0;
 
         while (consecutiveHeads < n) {
             totalCoinFlips++;
@@ -53,5 +57,35 @@ public class Lab01 {
 
     public static double getRandomNumber() {
         return Math.random();
+    }
+
+
+    // Write a method clock that uses Java’s built-in LocalDateTime
+    // object to constantly print out the current time to the console,
+    // second by second. The program should run until someone manually
+    // kills it with CTRL-C or presses the “stop” button in their IDE.
+    // Each time should only be printed once. Your program should
+    // detect when the seconds increase and only print something out
+    // when the timestamp changes.
+    public static void clock() {
+        int previousSecond = LocalDateTime.now().getSecond();
+        int currentSecond;
+        int i = 0;
+
+        while (true) {
+            i++;
+            currentSecond = LocalDateTime.now().getSecond();
+
+            if (previousSecond != currentSecond) {
+                printClock(i);
+                previousSecond = currentSecond;
+                i = 0;
+            }
+        }
+    }
+
+    public static void printClock(int i) {
+        String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        System.out.println(time + " " + i / 1000000 + " MHz");
     }
 }
