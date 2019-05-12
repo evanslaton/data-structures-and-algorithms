@@ -23,10 +23,6 @@ public class Linter {
                 System.out.format("Line %d needs a semi-colon\n", lineNumber);
             }
 
-            if (endsInASpace((currentLine))) {
-                System.out.format("Line %d has trailing spaces\n", lineNumber);
-            }
-
             try {
                 currentLine = fileToLinter.readLine();
                 lineNumber++;
@@ -57,9 +53,5 @@ public class Linter {
         } else {
             return false;
         }
-    }
-
-    public static boolean endsInASpace(String currentLine) {
-        return currentLine.endsWith(" ") ? true : false;
     }
 }
