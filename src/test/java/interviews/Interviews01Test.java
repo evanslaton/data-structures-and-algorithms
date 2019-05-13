@@ -21,4 +21,11 @@ public class Interviews01Test {
         assertArrayEquals(expectedOutput, Interviews01.getSumsOfMatrix(testMatrix));
     }
 
+    @Test
+    public void testGetNthFibonacci() {
+        assertEquals(34, Interviews01.getNthFibonacci(10));
+        assertEquals(317811, Interviews01.getNthFibonacci(29));
+        assertEquals(701408733, Interviews01.getNthFibonacci(45));
+    }
+
 }
