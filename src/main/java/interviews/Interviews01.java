@@ -33,12 +33,20 @@ public class Interviews01 {
             return firstNumber;
         }
 
-        for (int i = 0; i < n - 2; i++) {
+        for (int i = 0; i <= n - 2; i++) {
             placeHolder = firstNumber + secondNumber;
             firstNumber = secondNumber;
             secondNumber = placeHolder;
         }
 
         return secondNumber;
+    }
+
+    public static int getNthFibonacciRecursively(int n) {
+        if (n <= 1) {
+            return n;
+        }
+
+        return getNthFibonacciRecursively(n - 1) + getNthFibonacciRecursively(n - 2);
     }
 }

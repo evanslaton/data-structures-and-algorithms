@@ -23,9 +23,20 @@ public class Interviews01Test {
 
     @Test
     public void testGetNthFibonacci() {
-        assertEquals(34, Interviews01.getNthFibonacci(10));
-        assertEquals(317811, Interviews01.getNthFibonacci(29));
-        assertEquals(701408733, Interviews01.getNthFibonacci(45));
+        assertEquals(0, Interviews01.getNthFibonacci(0));
+        assertEquals(1, Interviews01.getNthFibonacci(1));
+        assertEquals(1, Interviews01.getNthFibonacci(2));
+        assertEquals(55, Interviews01.getNthFibonacci(10));
+        assertEquals(1134903170, Interviews01.getNthFibonacci(45));
+    }
+
+    @Test
+    public void testGetNthFibonacciRecursively() {
+        assertEquals(0, Interviews01.getNthFibonacciRecursively(0));
+        assertEquals(1, Interviews01.getNthFibonacciRecursively(1));
+        assertEquals(1, Interviews01.getNthFibonacciRecursively(2));
+        assertEquals(55, Interviews01.getNthFibonacciRecursively(10));
+        assertEquals(1134903170, Interviews01.getNthFibonacciRecursively(45));
     }
 
 }
