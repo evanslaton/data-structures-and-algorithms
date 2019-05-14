@@ -4,18 +4,19 @@ package linkedlist;
 public class LinkedList<T> {
     private Node head;
 
-    public LinkedList setHead(Node head) {
-        this.head = head;
-        return this;
+    public LinkedList() {
+        this.head = null;
     }
 
-    public LinkedList setHeadValue(T value) {
-        this.head.setValue(value);
-        return this;
+    public Node getHead() {
+        return this.head;
     }
 
-    public LinkedList setHeadNext(Node next) {
-        this.head.setNext(next);
-        return this;
+    public void setHead(Node newHead) {
+        this.head = newHead;
+    }
+
+    public void insert(T value) {
+        this.setHead(new Node.Builder().value(value).next(this.getHead()).build());
     }
 }
