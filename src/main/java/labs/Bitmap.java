@@ -10,7 +10,6 @@ public class Bitmap {
     private File outputFile;
     private BufferedImage bufferedImage;
 
-    // Constructor
     public Bitmap(String inputFilePath, String outputFilePath) {
         this.inputFile = new File(inputFilePath);
         this.outputFile = new File(outputFilePath);
@@ -25,6 +24,18 @@ public class Bitmap {
             System.out.println(error);
         }
         return image;
+    }
+    
+    public void flipVertically() {
+        for (int i = 0; i < this.bufferedImage.getHeight(); i++) {
+            for (int j = 0; j < this.bufferedImage.getWidth() / 2; j++) {
+                int temporaryData = this.bufferedImage.getRGB(i, j);
+                this.bufferedImage.setRGB(i, j, this.bufferedImage.getRGB(i, this.bufferedImage.getWidth() - j - 1));
+                this.bufferedImage.setRGB(i, this.bufferedImage.getWidth() - j - 1, temporaryData);
+            }
+        }
+
+        this.writeBufferedImage();
     }
 
     public void writeBufferedImage() {
