@@ -47,7 +47,10 @@ public class LinkedListTest<T> {
         l.append('a');
         System.out.println(l.print());
 
-        l.insertBefore(100, "insertBefore");
+        l.insertBefore("String", "insertBefore");
+        System.out.println(l.print());
+
+        l.insertAfter(true, 5.5);
         System.out.println(l.print());
     }
 }
