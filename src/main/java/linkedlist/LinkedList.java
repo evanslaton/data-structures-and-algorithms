@@ -59,4 +59,31 @@ public class LinkedList<T> {
 
         current.setNext(new Node.Builder().value(value).build());
     }
+
+    public void insertBefore(T value, T newValue) {
+        Node current = this.head;
+
+        while (current != null) {
+            if (current.getNext().getValue() == value) {
+                current.setNext(new Node.Builder().value(newValue).next(current.getNext()).build());
+                break;
+            }
+
+            current = current.getNext();
+        }
+    }
+
+    public void insertAfter(T value, T newValue) {
+        Node current = this.head;
+
+        while (current != null) {
+            if (current.getValue() == value) {
+                System.out.println("getNext *************************");
+                current.setNext(new Node.Builder().value(newValue).next(current.getNext()).build());
+                break;
+            }
+
+            current = current.getNext();
+        }
+    }
 }
