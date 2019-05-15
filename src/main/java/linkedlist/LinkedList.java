@@ -59,4 +59,14 @@ public class LinkedList<T> {
 
         current.setNext(new Node.Builder().value(value).build());
     }
+
+    public void insertBefore(T value) {
+        Node current = this.head;
+
+        while (current != null) {
+            current = current.getNext();
+        }
+
+        current.setNext(new Node.Builder().value(value).build());
+    }
 }
