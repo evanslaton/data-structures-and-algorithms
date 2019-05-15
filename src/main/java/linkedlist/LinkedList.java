@@ -49,4 +49,14 @@ public class LinkedList<T> {
 
         return allValues;
     }
+
+    public void append(T value) {
+        Node current = this.head;
+
+        while (current.getNext() != null) {
+            current = current.getNext();
+        }
+
+        current.setNext(new Node.Builder().value(value).build());
+    }
 }

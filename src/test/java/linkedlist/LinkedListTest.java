@@ -43,6 +43,8 @@ public class LinkedListTest<T> {
         assertEquals(true, l.print().get(0));
         assertEquals("String", l.print().get(1));
         assertEquals(100, l.print().get(2));
+
+        l.append('a');
         System.out.println(l.print());
     }
 }
