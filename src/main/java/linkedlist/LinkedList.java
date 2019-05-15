@@ -78,7 +78,6 @@ public class LinkedList<T> {
 
         while (current != null) {
             if (current.getValue() == value) {
-                System.out.println("getNext *************************");
                 current.setNext(new Node.Builder().value(newValue).next(current.getNext()).build());
                 break;
             }
