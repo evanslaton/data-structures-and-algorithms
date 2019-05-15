@@ -60,13 +60,17 @@ public class LinkedList<T> {
         current.setNext(new Node.Builder().value(value).build());
     }
 
-    public void insertBefore(T value) {
+    public void insertBefore(T value, T newValue) {
         Node current = this.head;
 
         while (current != null) {
+            if (current.getNext().getValue() == value) {
+                System.out.println("getNext *************************");
+                current.setNext(new Node.Builder().value(newValue).next(current.getNext()).build());
+                break;
+            }
+
             current = current.getNext();
         }
-
-        current.setNext(new Node.Builder().value(value).build());
     }
 }

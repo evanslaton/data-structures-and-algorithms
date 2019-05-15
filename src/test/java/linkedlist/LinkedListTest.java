@@ -46,5 +46,8 @@ public class LinkedListTest<T> {
 
         l.append('a');
         System.out.println(l.print());
+
+        l.insertBefore(100, "insertBefore");
+        System.out.println(l.print());
     }
 }
