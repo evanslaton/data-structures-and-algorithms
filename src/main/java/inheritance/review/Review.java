@@ -35,4 +35,8 @@ public class Review {
     public String toString() {
         return "Author: " + this.author.getName() + "\nStar Rating: " + this.stars + "\nReview: " + this.body;
     }
+
+    public void updateStars(int stars) {
+        this.stars = stars;
+    }
 }

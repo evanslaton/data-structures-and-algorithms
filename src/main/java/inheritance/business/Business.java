@@ -8,13 +8,11 @@ import java.util.ArrayList;
 
 public class Business {
     private String name;
-    private int stars;
     private String price;
     private List<Review> reviews;
 
     public Business(String name, String price) {
         this.name = name;
-        this.stars = 0;
         this.price = price;
         this.reviews = new ArrayList<>();
     }
@@ -27,16 +25,16 @@ public class Business {
         return this.reviews;
     }
 
-    public int getStars() {
-        return this.stars;
-    }
+    public int calculateStars() {
+        int stars;
 
-    public void updateStars() {
         if (reviews.size() == 0) {
-            this.stars = 0;
+            stars = 0;
         } else {
-            this.stars = getStarsAverage() / this.reviews.size();
+            stars = getStarsAverage() / this.reviews.size();
         }
+
+        return stars;
     }
 
     private int getStarsAverage() {
@@ -58,11 +56,10 @@ public class Business {
         } else {
             this.reviews.add(review);
             author.addReview(review);
-            this.updateStars();
         }
     }
 
     public String toString() {
-        return this.name + " has a " + this.stars +  " star rating, a price rating of " + this.price + ", and " + this.reviews.size() + " reviews.";
+        return this.name + " has a " + this.calculateStars() +  " star rating, a price rating of " + this.price + ", and " + this.reviews.size() + " reviews.";
     }
 }
