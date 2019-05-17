@@ -52,5 +52,6 @@ public class LinkedListTest<T> {
 
         l.insertAfter(true, 5.5);
         System.out.println(l.print());
+        System.out.println(l.getKthFromEnd(0));
     }
 }
