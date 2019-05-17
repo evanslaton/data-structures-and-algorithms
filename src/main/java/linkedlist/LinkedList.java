@@ -85,4 +85,41 @@ public class LinkedList<T> {
             current = current.getNext();
         }
     }
+
+    public T getKthFromEnd(int k) {
+        if (k < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        int length = this.getLength();
+
+        if (k > length - 1) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        return (T) this.getKthFromEndNode(length, k).getValue();
+    }
+
+    private int getLength() {
+        Node current = this.head;
+        int length = 0;
+
+        while (current != null) {
+            length++;
+
+            current = current.getNext();
+        }
+
+        return length;
+    }
+
+    private Node getKthFromEndNode(int length, int k) {
+        Node current = this.head;
+
+        for (int i = 0; i < length - k - 1; i++) {
+            current = current.getNext();
+        }
+
+        return current;
+    }
 }
