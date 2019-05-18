@@ -1,12 +1,13 @@
 package inheritance.user;
 
 import inheritance.business.Business;
+import inheritance.interfaces.ToString;
 import inheritance.review.Review;
 
 import java.util.List;
 import java.util.ArrayList;
 
-public class User {
+public class User implements ToString {
     private String name;
     private List<Review> reviews;
 

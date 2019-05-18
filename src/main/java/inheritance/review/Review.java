@@ -1,9 +1,10 @@
 package inheritance.review;
 
 import inheritance.business.Business;
+import inheritance.interfaces.ToString;
 import inheritance.user.User;
 
-public class Review {
+public class Review implements ToString {
     private String body;
     private User author;
     private int stars;

@@ -1,9 +1,12 @@
 package inheritance.business;
 
+import inheritance.interfaces.BusinessInformation;
+import inheritance.interfaces.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Theater extends Business {
+public class Theater extends Business implements ToString, BusinessInformation {
     private List<String> movies;
 
     public Theater(String name, String price) {
