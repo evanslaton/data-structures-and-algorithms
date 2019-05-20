@@ -1,5 +1,6 @@
 package inheritance.business;
 
+import inheritance.interfaces.BusinessInformation;
 import inheritance.review.Review;
 import inheritance.review.TheaterReview;
 import inheritance.user.User;
@@ -39,6 +40,9 @@ public class RestaurantTest {
         System.out.println(amcLennox24.toString() + "\n");
 
         System.out.println(joeReview.toString());
+
+        BusinessInformation bi = new Restaurant("Burger King", "$");
+        System.out.println(bi.toString());
     }
 
 }
