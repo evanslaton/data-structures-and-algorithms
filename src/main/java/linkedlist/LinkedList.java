@@ -1,6 +1,5 @@
 package linkedlist;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,13 +50,17 @@ public class LinkedList<T> {
     }
 
     public void append(T value) {
-        Node current = this.head;
+        if (this.head == null) {
+            this.head = new Node.Builder().value(value).build();
+        } else {
+            Node current = this.head;
 
-        while (current.getNext() != null) {
-            current = current.getNext();
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+
+            current.setNext(new Node.Builder().value(value).build());
         }
-
-        current.setNext(new Node.Builder().value(value).build());
     }
 
     public void insertBefore(T value, T newValue) {
@@ -121,5 +124,49 @@ public class LinkedList<T> {
         }
 
         return current;
+    }
+
+    public static LinkedList merge(LinkedList one, LinkedList two) {
+        LinkedList output = new LinkedList();
+        Node current = output.getHead();
+
+        if (one.getHead() != null) {
+
+        }
+
+
+        Node onesHead = one.getHead();
+        Node twosHead = two.getHead();
+        boolean appendHeadFromOne = true;
+
+        while (onesHead != null && twosHead != null) {
+            if (appendHeadFromOne) {
+                output.appendNode(onesHead);
+                onesHead = onesHead.getNext();
+            } else {
+                output.appendNode(twosHead);
+                twosHead = twosHead.getNext();
+            }
+
+            appendHeadFromOne = !appendHeadFromOne;
+        }
+
+        if (onesHead != null) {
+            output.appendNode(onesHead);
+        } else if (twosHead != null) {
+            output.appendNode(twosHead);
+        }
+
+        return output;
+    }
+
+    public void appendNode(Node node) {
+        Node current = this.head;
+
+        while (current.getNext() != null) {
+            current = current.getNext();
+        }
+
+        current.setNext(node);
     }
 }

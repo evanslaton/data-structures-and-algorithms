@@ -11,47 +11,17 @@ public class LinkedListTest<T> {
     @Test
     public void testInsert() {
         LinkedList l = new LinkedList();
+        l.append(1);
+        l.append(3);
+        l.append(5);
 
-        assertEquals(null, l.getHead());
+        LinkedList m = new LinkedList();
+        l.append(2);
+        l.append(4);
+        l.append(6);
 
-        l.insert(100);
-        assertEquals(100, l.getHead().getValue());
-        assertEquals(null, l.getHead().getNext());
+        LinkedList n = LinkedList.merge(l, m);
+        System.out.println(n.print());
 
-        l.insert("String");
-        assertEquals("String", l.getHead().getValue());
-        assertEquals(100, l.getHead().getNext().getValue());
-
-        l.insert(true);
-        assertEquals(true, l.getHead().getValue());
-        assertEquals("String", l.getHead().getNext().getValue());
-        assertEquals(100, l.getHead().getNext().getNext().getValue());
-
-        assertTrue(l.includes(true));
-        assertTrue(l.includes("String"));
-        assertTrue(l.includes(100));
-
-        assertFalse(l.includes(false));
-        assertFalse(l.includes('a'));
-        assertFalse(l.includes(1.346));
-
-        List<Object> lValues = new ArrayList<>();
-        lValues.add(true);
-        lValues.add("String");
-        lValues.add(100);
-
-        assertEquals(true, l.print().get(0));
-        assertEquals("String", l.print().get(1));
-        assertEquals(100, l.print().get(2));
-
-        l.append('a');
-        System.out.println(l.print());
-
-        l.insertBefore("String", "insertBefore");
-        System.out.println(l.print());
-
-        l.insertAfter(true, 5.5);
-        System.out.println(l.print());
-        System.out.println(l.getKthFromEnd(0));
     }
 }
