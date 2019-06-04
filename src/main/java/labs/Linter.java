@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class Linter {
     public static void main(String[] args) {
-        Path p = Paths.get("resources/no-errors.js");
+        Path p = Paths.get("resources/gates.js");
         logLinterErrors(p);
     }
 

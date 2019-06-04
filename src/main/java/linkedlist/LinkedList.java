@@ -128,45 +128,19 @@ public class LinkedList<T> {
 
     public static LinkedList merge(LinkedList one, LinkedList two) {
         LinkedList output = new LinkedList();
-        Node current = output.getHead();
 
-        if (one.getHead() != null) {
+        Node currentOne = one.getHead();
+        Node currentTwo = two.getHead();
 
+        while (currentOne != null && currentOne != null) {
+            
         }
 
 
-        Node onesHead = one.getHead();
-        Node twosHead = two.getHead();
-        boolean appendHeadFromOne = true;
 
-        while (onesHead != null && twosHead != null) {
-            if (appendHeadFromOne) {
-                output.appendNode(onesHead);
-                onesHead = onesHead.getNext();
-            } else {
-                output.appendNode(twosHead);
-                twosHead = twosHead.getNext();
-            }
 
-            appendHeadFromOne = !appendHeadFromOne;
-        }
-
-        if (onesHead != null) {
-            output.appendNode(onesHead);
-        } else if (twosHead != null) {
-            output.appendNode(twosHead);
-        }
 
         return output;
     }
 
-    public void appendNode(Node node) {
-        Node current = this.head;
-
-        while (current.getNext() != null) {
-            current = current.getNext();
-        }
-
-        current.setNext(node);
-    }
 }

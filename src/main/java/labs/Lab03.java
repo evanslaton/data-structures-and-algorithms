@@ -5,7 +5,6 @@ import java.util.*;
 public class Lab03 {
     public static void main(String[] args) {
 
-
         List<String> votes = new ArrayList<>();
         votes.add("Bush");
         votes.add("Bush");
