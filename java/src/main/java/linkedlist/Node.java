@@ -2,38 +2,14 @@ package linkedlist;
 
 public class Node<T> {
     private T value;
-    private Node next;
+    private Node<T> next;
 
-    public static class Builder<T> {
-        private T value;
-        private Node next;
-
-        public Builder() {
-            this.value = null;
-            this.next = null;
-        }
-
-        public Builder value(T value) {
-            this.value = value;
-            return this;
-        }
-
-        public Builder next(Node next) {
-            this.next = next;
-            return this;
-        }
-
-        public Node build() {
-            return new Node(this);
-        }
+    public Node(T value) {
+        this.value = value;
+        this.next = null;
     }
 
-    private Node(Builder builder) {
-        this.value = (T) builder.value;
-        this.next = builder.next;
-    }
-
-    public Node(T value, Node next) {
+    public Node(T value, Node<T> next) {
         this.value = value;
         this.next = next;
     }
@@ -42,7 +18,7 @@ public class Node<T> {
         return this.value;
     }
 
-    public Node getNext() {
+    public Node<T> getNext() {
         return this.next;
     }
 
@@ -50,7 +26,7 @@ public class Node<T> {
         this.value = value;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
 }
