@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.Set;
+
 public class LinkedList<T> {
     private Node<T> head;
 
@@ -7,7 +9,11 @@ public class LinkedList<T> {
         this.head = null;
     }
 
-    private int size() {
+    public Node<T> getHead() {
+        return this.head;
+    }
+
+    public int size() {
         Node<T> current = this.head;
         int size = 0;
         while (current != null) {

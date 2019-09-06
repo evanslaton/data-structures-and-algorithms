@@ -14,19 +14,19 @@ public class Node<T> {
         this.next = next;
     }
 
-    public T getValue() {
+    protected T getValue() {
         return this.value;
     }
 
-    public Node<T> getNext() {
+    protected Node<T> getNext() {
         return this.next;
     }
 
-    public void setValue(T value) {
+    protected void setValue(T value) {
         this.value = value;
     }
 
-    public void setNext(Node<T> next) {
+    protected void setNext(Node<T> next) {
         this.next = next;
     }
 }
