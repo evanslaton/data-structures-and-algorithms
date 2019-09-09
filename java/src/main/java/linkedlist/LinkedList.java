@@ -57,7 +57,8 @@ public class LinkedList<T> {
             insert(value);
         } else {
             Node<T> lastNode = getLastNode();
-            lastNode.setNext(new Node<>(value));
+            Node<T> nodeToAppend = new Node<>(value);
+            lastNode.setNext(nodeToAppend);
         }
     }
 
@@ -79,17 +80,9 @@ public class LinkedList<T> {
         if (this.headContains(targetValue)) {
             insert(valueToAdd);
         } else {
-            Node<T> nodeToInsertAfter = getNodeToInsertAfter(targetValue);
+            Node<T> nodeToInsertAfter = getNodePreviousToTargetNode(targetValue);
             insertHelper(valueToAdd, nodeToInsertAfter);
         }
-    }
-
-    private Node<T> getNodeToInsertAfter(T targetValue) {
-        Node<T> current = this.head;
-        while (current != null && !current.getNext().getValue().equals(targetValue)) {
-            current = current.getNext();
-        }
-        return current;
     }
 
     public void insertAfter(T targetValue, T valueToAdd) {
@@ -103,7 +96,7 @@ public class LinkedList<T> {
             Node<T> newNode = new Node(valueToAdd);
             this.head.setNext(newNode);
         } else {
-            Node<T> nodeToInsertAfter = getNodeWithTargetValue(targetValue);
+            Node<T> nodeToInsertAfter = getNodePreviousToTargetNode(targetValue).getNext();
             insertHelper(valueToAdd, nodeToInsertAfter);
         }
     }
@@ -113,44 +106,56 @@ public class LinkedList<T> {
         return valueAtHead.equals(targetValue);
     }
 
-    private Node<T> getNodeWithTargetValue(T targetValue) {
+    private Node<T> getNodePreviousToTargetNode(T targetValue) {
         Node<T> current = this.head;
-        while (current != null && !current.getValue().equals(targetValue)) {
+        while (current != null && !current.getNext().getValue().equals(targetValue)) {
             current = current.getNext();
         }
         return current;
     }
 
     private void insertHelper(T valueToAdd, Node<T> nodeToInsertAfter) {
-        if (nodeToInsertAfter != null) {
-            Node<T> newNode = new Node<>(valueToAdd, nodeToInsertAfter.getNext());
-            nodeToInsertAfter.setNext(newNode);
+        Node<T> newNode = new Node<>(valueToAdd, nodeToInsertAfter.getNext());
+        nodeToInsertAfter.setNext(newNode);
+    }
+
+    public Node<T> getKthNodeFromEnd(int k) {
+        try {
+            return this.kthNodeFromEnd(k);
+        } catch (Exception exception) {
+            throw exception;
         }
     }
 
-    public T getKthNodeFromEnd(int k) {
-        if (k < 0) {
-            throw new IllegalArgumentException("Input value must not be negative.");
-        }
+    private Node<T> kthNodeFromEnd(int k) {
         Node<T> current = this.head;
-        Node<T> forward = this.head;
-        findKthNodeFromEnd(forward, current, k);
-        if (current == null) {
-            throw new IndexOutOfBoundsException();
+        if (this.isInputValid(k)) {
+            Node<T> kthNodeFromCurrent = getNodeKthNodeFromHead(k);
+            while (kthNodeFromCurrent.getNext() != null) {
+                current = current.getNext();
+                kthNodeFromCurrent = kthNodeFromCurrent.getNext();
+            }
+        }
+        return current;
+    }
+
+    private boolean isInputValid(int k) {
+        if (this.isEmpty()) {
+            throw new NullPointerException("This linked List is empty.");
+        }else if (k < 0) {
+            throw new IllegalArgumentException("Input must not be negative.");
+        } else if (k > this.size() - 1) {
+            throw new IllegalArgumentException("Input must not be greater than this linked list's size - 1.");
         } else {
-            return current.getValue();
+            return true;
         }
     }
 
-    private void findKthNodeFromEnd(Node<T> forward, Node<T> current, int k) {
-        int count = 0;
-        while (forward != null) {
-            if (count < k) {
-                count++;
-            } else {
-                current = current.getNext();
-            }
-            forward = forward.getNext();
+    private Node<T> getNodeKthNodeFromHead(int k) {
+        Node<T> current = this.head;
+        for (int i = 0; i < k; i++) {
+            current = current.getNext();
         }
+        return current;
     }
 }

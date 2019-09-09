@@ -216,4 +216,53 @@ public class LinkedListTest<T> {
         testLinkedList.insertAfter(4,4);
         assertFalse(testLinkedList.includes(4));
     }
+
+    @Test(expected=NullPointerException.class)
+    public void testGetKthNodeFromEnd_emptyLinkedList() throws Exception {
+        assertEquals(null, testLinkedList.getKthNodeFromEnd(0));
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testGetKthNodeFromEnd_kIsLessThanZero() throws Exception {
+        testLinkedList.insert(1);
+        assertEquals(1, testLinkedList.getKthNodeFromEnd(-1));
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testGetKthNodeFromEnd_kIsEqualToSizeOfLinkedList() throws Exception {
+        testLinkedList.insert(1);
+        testLinkedList.insert(2);
+        assertEquals(1, testLinkedList.getKthNodeFromEnd(2));
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testGetKthNodeFromEnd_kIsGreaterThanSizeOfLinkedListMinusOne() throws Exception {
+        testLinkedList.insert(1);
+        testLinkedList.insert(2);
+        assertEquals(1, testLinkedList.getKthNodeFromEnd(2));
+    }
+
+    @Test
+    public void testGetKthNodeFromEnd_getLastItemInLinkedList() {
+        testLinkedList.insert(1);
+        testLinkedList.append(2);
+        testLinkedList.append(3);
+        assertEquals((Integer) 3, testLinkedList.getKthNodeFromEnd(0).getValue());
+    }
+
+    @Test
+    public void testGetKthNodeFromEnd_getMiddleItemInLinkedList() {
+        testLinkedList.insert(1);
+        testLinkedList.append(2);
+        testLinkedList.append(3);
+        assertEquals((Integer) 2, testLinkedList.getKthNodeFromEnd(1).getValue());
+    }
+
+    @Test
+    public void testGetKthNodeFromEnd_getFirstItemInLinkedList() {
+        testLinkedList.insert(1);
+        testLinkedList.append(2);
+        testLinkedList.append(3);
+        assertEquals((Integer) 1, testLinkedList.getKthNodeFromEnd(2).getValue());
+    }
 }
