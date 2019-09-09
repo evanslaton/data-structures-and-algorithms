@@ -1,34 +1,16 @@
-/**
- * Linked List
- *
- * @author Evan Slaton
- *
- */
-
 package linkedlist;
 
 public class LinkedList<T> {
     private Node<T> head;
 
-    /**
-     * <p>Constructs an empty list.</p>
-     */
     public LinkedList() {
         this.head = null;
     }
 
-    /**
-     * @param none
-     * @return the node that is stored at the head of the linked list
-     */
     public Node<T> getHead() {
         return this.head;
     }
 
-    /**
-     * @param none
-     * @return the number of elements in the list.
-     */
     public int size() {
         Node<T> current = this.head;
         int size = 0;
@@ -39,18 +21,10 @@ public class LinkedList<T> {
         return size;
     }
 
-    /**
-     * @param none
-     * @return true if the list is empty, false if not.
-     */
     public boolean isEmpty() {
         return this.head == null;
     }
 
-    /**
-     * @param T
-     * @return true if the list contains the value specified, false if not.
-     */
     public boolean includes(T value) {
         Node<T> current = this.head;
         while (current != null) {
@@ -80,7 +54,7 @@ public class LinkedList<T> {
 
     public void append(T value) {
         if (this.isEmpty()) {
-            this.head = new Node<>(value);
+            insert(value);
         } else {
             Node<T> lastNode = getLastNode();
             lastNode.setNext(new Node<>(value));
