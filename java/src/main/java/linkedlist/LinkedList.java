@@ -158,4 +158,38 @@ public class LinkedList<T> {
         }
         return current;
     }
+
+    public static <E> LinkedList<E> merge(LinkedList<E> list1, LinkedList<E> list2) {
+        if (list1.isEmpty() || list2.isEmpty()) {
+            return getNotEmptyLinkedList(list1, list2);
+        } else {
+            return mergeHelper(list1, list2);
+        }
+    }
+
+    private static <E> LinkedList<E> getNotEmptyLinkedList(LinkedList<E> list1, LinkedList<E> list2) {
+        return list1.size() > list2.size() ? list1 : list2;
+    }
+
+    private static <E> LinkedList<E> mergeHelper(LinkedList<E> list1, LinkedList<E> list2) {
+        if (list1.size() > list2.size()) {
+            return mergeShorterIntoLongerList(list1, list2);
+        } else {
+            return mergeShorterIntoLongerList(list2, list1);
+        }
+    }
+
+    private static <E> LinkedList<E> mergeShorterIntoLongerList(LinkedList<E> listToMergeInto, LinkedList<E> listToMergeFrom) {
+        Node<E> nodeFromMainList = listToMergeInto.head;
+        Node<E> nodeFromMergingList = listToMergeFrom.head;
+        while(nodeFromMainList != null && nodeFromMergingList != null) {
+            Node<E> temp = nodeFromMainList.getNext();
+            Node<E> temp2 = nodeFromMergingList.getNext();
+            nodeFromMainList.setNext(nodeFromMergingList);
+            nodeFromMergingList.setNext(temp);
+            nodeFromMainList = temp;
+            nodeFromMergingList = temp2;
+        }
+    }
+
 }
