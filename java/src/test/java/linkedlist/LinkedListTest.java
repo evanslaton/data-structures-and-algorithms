@@ -7,10 +7,24 @@ import static org.junit.Assert.*;
 
 public class LinkedListTest<T> {
     LinkedList<Integer> testLinkedList;
+    LinkedList<Integer> testLinkedList2;
+    LinkedList<Integer> testLinkedList3;
+    LinkedList<Integer> testLinkedList4;
 
     @Before
     public void setNodes() {
         testLinkedList = new LinkedList<>();
+        testLinkedList2 = new LinkedList<>();
+
+        testLinkedList3 = new LinkedList<>();
+        testLinkedList3.append(1);
+        testLinkedList3.append(3);
+        testLinkedList3.append(5);
+
+        testLinkedList4 = new LinkedList<>();
+        testLinkedList4.append(2);
+        testLinkedList4.append(4);
+        testLinkedList4.append(6);
     }
 
     @Test
@@ -264,5 +278,15 @@ public class LinkedListTest<T> {
         testLinkedList.append(2);
         testLinkedList.append(3);
         assertEquals((Integer) 1, testLinkedList.getKthNodeFromEnd(2).getValue());
+    }
+
+    @Test
+    public void testMerge_emptyLists() {
+        assertEquals(testLinkedList2, LinkedList.merge(testLinkedList, testLinkedList2));
+    }
+
+    @Test
+    public void testMerge_oneEmptyLists() {
+        assertEquals(testLinkedList3, LinkedList.merge(testLinkedList, testLinkedList3));
     }
 }

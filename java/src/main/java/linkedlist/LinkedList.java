@@ -182,14 +182,17 @@ public class LinkedList<T> {
     private static <E> LinkedList<E> mergeShorterIntoLongerList(LinkedList<E> listToMergeInto, LinkedList<E> listToMergeFrom) {
         Node<E> nodeFromMainList = listToMergeInto.head;
         Node<E> nodeFromMergingList = listToMergeFrom.head;
+        Node<E> mainTemp;
+        Node<E> mergeTemp;
         while(nodeFromMainList != null && nodeFromMergingList != null) {
-            Node<E> temp = nodeFromMainList.getNext();
-            Node<E> temp2 = nodeFromMergingList.getNext();
+            mainTemp = nodeFromMainList.getNext();
+            mergeTemp = nodeFromMergingList.getNext();
             nodeFromMainList.setNext(nodeFromMergingList);
-            nodeFromMergingList.setNext(temp);
-            nodeFromMainList = temp;
-            nodeFromMergingList = temp2;
+            nodeFromMergingList.setNext(mainTemp);
+            nodeFromMainList = mainTemp;
+            nodeFromMergingList = mergeTemp;
         }
+        return listToMergeFrom;
     }
 
 }
