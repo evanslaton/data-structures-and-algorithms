@@ -2,6 +2,7 @@ package linkedlist;
 
 public class LinkedList<T> {
     private Node<T> head;
+    private int size;
 
     public LinkedList() {
         this.head = null;
@@ -54,7 +55,7 @@ public class LinkedList<T> {
 
     public void append(T value) {
         if (this.isEmpty()) {
-            insert(value);
+            this.head = new Node<>(value);
         } else {
             Node<T> lastNode = getLastNode();
             Node<T> nodeToAppend = new Node<>(value);
@@ -93,7 +94,7 @@ public class LinkedList<T> {
 
     private void performInsertAfter(T targetValue, T valueToAdd) {
         if (this.headContains(targetValue)) {
-            Node<T> newNode = new Node(valueToAdd);
+            Node<T> newNode = new Node<>(valueToAdd, this.head.getNext());
             this.head.setNext(newNode);
         } else {
             Node<T> nodeToInsertAfter = getNodePreviousToTargetNode(targetValue).getNext();
@@ -159,6 +160,23 @@ public class LinkedList<T> {
         return current;
     }
 
+    public LinkedList<T> reverse() {
+        if (this.size() > 1) {
+            Node<T> previous = this.head;
+            Node<T> current = previous.getNext();
+            Node<T> next = current.getNext();
+            previous.setNext(null);
+            while(current != null) {
+                current.setNext(previous);
+                this.head = current;
+
+                previous = current;
+                current = next;
+                next = current.getNext();
+            }
+        }
+    }
+
     public static <E> LinkedList<E> merge(LinkedList<E> list1, LinkedList<E> list2) {
         if (list1.isEmpty() || list2.isEmpty()) {
             return getNotEmptyLinkedList(list1, list2);
@@ -168,11 +186,11 @@ public class LinkedList<T> {
     }
 
     private static <E> LinkedList<E> getNotEmptyLinkedList(LinkedList<E> list1, LinkedList<E> list2) {
-        return list1.size() > list2.size() ? list1 : list2;
+        return list1.size() >= list2.size() ? list1 : list2;
     }
 
     private static <E> LinkedList<E> mergeHelper(LinkedList<E> list1, LinkedList<E> list2) {
-        if (list1.size() > list2.size()) {
+        if (list1.size() >= list2.size()) {
             return mergeShorterIntoLongerList(list1, list2);
         } else {
             return mergeShorterIntoLongerList(list2, list1);
@@ -192,7 +210,7 @@ public class LinkedList<T> {
             nodeFromMainList = mainTemp;
             nodeFromMergingList = mergeTemp;
         }
-        return listToMergeFrom;
+        return listToMergeInto;
     }
 
 }

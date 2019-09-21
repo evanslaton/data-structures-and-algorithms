@@ -186,9 +186,19 @@ public class LinkedListTest<T> {
     @Test
     public void testInsertAfter_insertAfterHead() {
         testLinkedList.append(1);
-        testLinkedList.insertAfter(1,2);
-        assertEquals((Integer) 2, testLinkedList.getHead().getNext().getValue());
+        testLinkedList.append(2);
+        testLinkedList.insertAfter(1,3);
+        assertEquals((Integer) 3, testLinkedList.getHead().getNext().getValue());
     }
+
+    @Test
+    public void testInsertAfter_insertAfterHeadWithoutLosingRestOfValues() {
+        testLinkedList.append(1);
+        testLinkedList.append(2);
+        testLinkedList.insertAfter(1,3);
+        assertEquals((Integer) 2, testLinkedList.getHead().getNext().getNext().getValue());
+    }
+
 
     @Test
     public void testInsertAfter_insertAfterNodeInMiddle() {
@@ -282,11 +292,29 @@ public class LinkedListTest<T> {
 
     @Test
     public void testMerge_emptyLists() {
-        assertEquals(testLinkedList2, LinkedList.merge(testLinkedList, testLinkedList2));
+        assertEquals(testLinkedList, LinkedList.merge(testLinkedList, testLinkedList2));
     }
 
     @Test
-    public void testMerge_oneEmptyLists() {
+    public void testMerge_emptyFirstList() {
         assertEquals(testLinkedList3, LinkedList.merge(testLinkedList, testLinkedList3));
+    }
+
+    @Test
+    public void testMerge_emptySecondList() {
+        assertEquals(testLinkedList4, LinkedList.merge(testLinkedList2, testLinkedList4));
+    }
+
+    @Test
+    public void testMerge_sameSizedLists() {
+        Integer[] expectedValues = {1, 2, 3, 4, 5, 6};
+        testLinkedList = LinkedList.merge(testLinkedList3, testLinkedList4);
+        Node<Integer> current = testLinkedList.getHead();
+        int i = 0;
+        while (current != null) {
+            assertEquals(expectedValues[i], current.getValue());
+            i++;
+            current = current.getNext();
+        }
     }
 }
